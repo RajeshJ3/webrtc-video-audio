@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receive Call</title>
+    <style>
+      body {
+        background-color: #222;
+        color: #f2f2f2;
+      }
+      .container {
+        text-align: left;
+        max-width: 300px;
+      }
+      .step {
+        font-weight: bolder;
+      }
+      .step-instruction {
+        color: #cacaca;
+      }
+      textarea {
+        margin-bottom: 15px;
+        background-color: #555;
+        color: #f2f2f2;
+        outline: none;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>Receive Call</h1>
+      <hr style="max-width: 200px" />
+      <div class="container">
+        <!-- Step 1 : START -->
+        <h2>Step 1.</h2>
+        <p class="step-instruction">
+          <small>Paste the code provided by yout friend.</small>
+        </p>
+        <textarea id="offer" name="offer" rows="4"></textarea>
+        <center>
+          <button id="submitOffer">Submit</button>
+        </center>
+        <br />
+        <!-- Step 1 : END -->
+
+        <!-- Step 2 : START -->
+        <h2>Step 2.</h2>
+        <p class="step-instruction">
+          <small>Send the following code to your friend.</small>
+        </p>
+        <textarea
+          onclick="copyText()"
+          id="answer"
+          name="answer"
+          rows="4"
+        ></textarea>
+        <center>
+          <button onclick="copyText()">Click to Copy</button>
+        </center>
+        <!-- Step 2 : END -->
+        <center>
+          <p id="status"><span style="color: red;">NOT CONNECTED</span></p>
+        </center>
+
+        <video id="localVideo" width="100%" autoplay controls muted></video>
+        <video id="remoteVideo" width="100%" autoplay controls muted></video>
+
+      </div>
+    </center>
+    <script src="/peer2/script.js"></script>
+    <script>
+      function copyText() {
+        var textArea = document.getElementById("answer");
+
+        /* Select the text field */
+        textArea.select();
+        textArea.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        alert("Copied!");
+      }
+    </script>
+  </body>
+</html>
